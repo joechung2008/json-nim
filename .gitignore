@@ -1,0 +1,70 @@
+# Nim compiled artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Nim cache directories
+nimcache/
+htmldocs/
+
+# Build output directories
+build/
+dist/
+out/
+
+# Nimble generated files
+.nimble/
+
+# IDE and editor files
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Test coverage reports
+coverage/
+*.coverage
+
+# Documentation output
+docs/
+*.html
+
+# Package lock files (if using newer nimble versions)
+nimble.lock
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependencies (if vendored)
+vendor/
+
+# Backup files from package managers
+*.orig

@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Build, Test & Quality Check
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        nim-version: ["2.2.4"]
+        nimble-version: ["0.20.1"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Use Nim ${{ matrix.nim-version }}
+        run: |
+          curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
+          echo "$HOME/.nimble/bin" >> $GITHUB_PATH
+          choosenim ${{ matrix.nim-version }}
+
+      - name: Use nimble ${{ matrix.nimble-version }}
+        run: |
+          echo "Current nimble version:"
+          nimble --version
+          echo "Updating nimble to ${{ matrix.nimble-version }}..."
+          nimble install -y nimble@${{ matrix.nimble-version }}
+          echo "Updated nimble version:"
+          nimble --version
+
+      - name: Print versions
+        run: |
+          nim --version
+          nimble --version
+
+      - name: Install dependencies
+        run: nimble install_deps
+
+      - name: Build all packages
+        run: nimble build_all
+
+      - name: Run tests
+        run: nimble test
+
+      - name: Format check
+        run: |
+          nimble format
+          git diff --exit-code || (echo "Code is not formatted! Run 'nimble format'" && exit 1)
+
+      - name: Generate documentation
+        run: nimble docs
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: docs/
+          if-no-files-found: ignore
+
+      - name: Clean build artifacts
+        run: nimble clean

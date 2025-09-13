@@ -35,7 +35,3 @@ suite "JSON Monorepo Integration Tests":
     check parseJson("\"hello\"").strValue == "hello"
     check parseJson("[1,2,3]").arrayValue.len == 3
     check parseJson("{\"a\":1}").objValue["a"].numberValue == 1.0
-
-when isMainModule:
-  # Run the tests when this file is executed directly
-  echo "Running JSON monorepo integration tests..."

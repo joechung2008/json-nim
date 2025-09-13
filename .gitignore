@@ -6,6 +6,9 @@
 *.a
 *.lib
 
+# Windows
+vc140.pdb
+
 # Nim cache directories
 nimcache/
 htmldocs/
@@ -68,3 +71,5 @@ vendor/
 
 # Backup files from package managers
 *.orig
+nimble.develop
+nimble.paths

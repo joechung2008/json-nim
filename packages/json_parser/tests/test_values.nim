@@ -101,6 +101,3 @@ suite "Value Parsing":
       discard parseJson("ture")
     expect(ValueError):
       discard parseJson("treu")
-
-when isMainModule:
-  echo "Running value parsing tests..."

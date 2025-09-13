@@ -125,6 +125,3 @@ suite "String Parsing":
   test "should throw on incomplete Unicode escape":
     expect(ValueError):
       discard parseJson("\"hi\\u00\"")
-
-when isMainModule:
-  echo "Running string parsing tests..."

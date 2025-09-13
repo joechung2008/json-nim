@@ -140,6 +140,3 @@ suite "Number Parsing":
   test "should throw on Infinity":
     expect(ValueError):
       discard parseJson("Infinity")
-
-when isMainModule:
-  echo "Running number parsing tests..."

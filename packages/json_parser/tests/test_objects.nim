@@ -83,6 +83,3 @@ suite "Object Parsing":
   test "should throw on trailing comma":
     expect(ValueError):
       discard parseJson("{\"a\":1,}")
-
-when isMainModule:
-  echo "Running object parsing tests..."

@@ -69,6 +69,3 @@ suite "Array Parsing":
   test "should throw on trailing comma":
     expect(ValueError):
       discard parseJson("[1,2,]")
-
-when isMainModule:
-  echo "Running array parsing tests..."

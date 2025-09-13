@@ -35,6 +35,3 @@ suite "Key-Value Pair Parsing":
   test "should throw on incomplete key-value expression":
     expect(ValueError):
       discard parseJson("{\"a\"}")
-
-when isMainModule:
-  echo "Running key-value pair parsing tests..."

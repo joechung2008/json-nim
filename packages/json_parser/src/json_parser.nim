@@ -66,7 +66,8 @@ proc parseJson*(s: string): JsonNode =
         # Check for unescaped control characters (0-31)
         let ch = input[pos]
         if ord(ch) < 32:
-          raise newException(ValueError, "Unescaped control character in string: " & $ord(ch))
+          raise newException(ValueError,
+              "Unescaped control character in string: " & $ord(ch))
         strResult.add(ch)
         inc pos
 
@@ -263,7 +264,7 @@ proc `$`*(node: JsonNode): string =
   case node.kind
   of JNull: "null"
   of JBool: $node.bval
-  of JNumber: 
+  of JNumber:
     # Output clean integers when there's no fractional part
     if node.numberValue == float(int(node.numberValue)):
       $int(node.numberValue)

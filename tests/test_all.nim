@@ -39,4 +39,3 @@ suite "JSON Monorepo Integration Tests":
 when isMainModule:
   # Run the tests when this file is executed directly
   echo "Running JSON monorepo integration tests..."
-  echo "Note: For comprehensive test coverage (93 tests), run individual test files in packages/json_parser/tests/"

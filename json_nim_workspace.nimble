@@ -46,6 +46,15 @@ task clean, "Clean all build artifacts":
     exec "find . -name 'nimcache' -type d -exec rm -rf {} + 2>/dev/null || true"
   echo "Clean completed!"
 
+task build_static, "Build all packages as static binaries (Linux only)":
+  echo "Building JSON Nim Monorepo (static)..."
+  mkDir("build")
+  echo "Building json_parser (static)..."
+  exec "nim c -d:release --cc:gcc --passL:-static --out:build/json_parser.static packages/json_parser/src/json_parser.nim"
+  echo "Building cli (static)..."
+  exec "nim c -d:release --cc:gcc --passL:-static --out:build/json_cli.static packages/cli/src/json_cli.nim"
+  echo "Static binaries built in build/ directory as .static files"
+
 task docs, "Generate documentation for all packages":
   exec "cd packages/json_parser && nim doc --project --outdir:../../docs src/json_parser.nim"
   exec "cd packages/cli && nim doc --project --outdir:../../docs src/json_cli.nim"

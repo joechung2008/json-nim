@@ -15,5 +15,5 @@ RUN nimble build_static
 # ---- Runner stage ----
 FROM scratch
 WORKDIR /app
-COPY --from=builder /app/build/json_cli.static /app/json_cli
+COPY --from=builder /app/build/json_cli_static /app/json_cli
 CMD ["/app/json_cli"]

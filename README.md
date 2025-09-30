@@ -96,3 +96,44 @@ nimble format
 # Windows
 .\bin\format
 ```
+
+## Building Static Executables & Docker Usage
+
+### Why Static Builds?
+
+Static binaries are required for Docker images based on `scratch` or minimal base images, as these containers do not include system libraries needed for dynamically linked executables. By building a static version of the CLI, you ensure the binary can run in any container environment without missing dependencies.
+
+### How to Build Static Binaries
+
+#### Linux (recommended)
+
+```bash
+nimble build_static
+```
+
+This will produce static binaries in the `build/` directory:
+
+- `json_parser_static`
+- `json_cli_static`
+
+#### Windows
+
+```cmd
+bin\build_static.cmd
+```
+
+#### PowerShell
+
+```powershell
+bin\build_static.ps1
+```
+
+### Using Static Binaries in Docker
+
+The Dockerfile is configured to build and copy the static CLI binary into a minimal container:
+
+```dockerfile
+COPY --from=builder /app/build/json_cli_static /app/json_cli
+```
+
+This ensures the resulting Docker image is small and portable, with no runtime library dependencies.

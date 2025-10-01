@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+
+# CI/CD
+.github/
+
+# Build artifacts and cache
+nimcache/
+build/
+*.exe
+
+# Test executables
+test_*
+
+# IDE
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
